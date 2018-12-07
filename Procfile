@@ -1,1 +1,1 @@
-python openrun.py
+web:gunicorn run:app
