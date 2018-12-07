@@ -1,1 +1,1 @@
-web:gunicorn ccps610:create_app
+web:gunicorn run:create_app
