@@ -1,1 +1,1 @@
-run.py
+python openrun.py
