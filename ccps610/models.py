@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.png')
     password = db.Column(db.String(60), nullable=False)
     usertype = db.Column(db.String(60), nullable=False, default='User')
+    moderator_flag = db.Column(db.String(60), nullable=False, default=False)
     admin_flag = db.Column(db.String(60), nullable=False, default=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
@@ -38,7 +39,7 @@ class User(db.Model, UserMixin):
         return User.query.get(user_id)
 
     def __repr__(self):
-        return f"User('{self.id}', '{self.username}', '{self.email}', '{self.image_file}', '{self.usertype}', '{self.adminflag}', '{self.firstname}', '{self.lastname}')"
+        return f"User('{self.id}', '{self.username}', '{self.email}', '{self.image_file}', '{self.usertype}', '{self.admin_flag}','{self.moderator_flag}', '{self.firstname}', '{self.lastname}')"
 
 
 class Post(db.Model):

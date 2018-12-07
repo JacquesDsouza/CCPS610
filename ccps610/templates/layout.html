@@ -34,6 +34,9 @@
               <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
               <a class="nav-item nav-link" href="{{ url_for('main.browse') }}">Browse</a>
               <a class="nav-item nav-link" href="{{ url_for('posts.browse_my_post') }}">Browse My Posts</a>
+               {% if current_user.admin_flag == True or current_user.usertype == 'Moderator'  %}
+                  <a class="nav-item nav-link" href="{{ url_for('posts.browse_moderate') }}">Moderate Posts</a>
+                {% endif %}
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">

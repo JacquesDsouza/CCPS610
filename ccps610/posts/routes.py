@@ -32,7 +32,7 @@ def post(post_id):
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author != current_user and not current_user.adminflag :
+    if post.author != current_user and not current_user.admin_flag :
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
@@ -57,7 +57,7 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author != current_user and not current_user.adminflag:
+    if post.author != current_user and not current_user.admin_flag:
         abort(403)
     db.session.delete(post)
     db.session.commit()
@@ -71,7 +71,7 @@ def delete_post(post_id):
 def support_post(post_id):
     post = Post.query.get_or_404(post_id)
     count = post.support_count
-    if post.author != current_user and not current_user.adminflag :
+    if post.author != current_user and not current_user.admin_flag :
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
@@ -92,8 +92,16 @@ def support_post(post_id):
 
 
 @posts.route("/browse_my_post")
+@login_required
 def browse_my_post():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('browse_my_post.html', title='Browse, Support and track User Content Feedback', posts=posts)
+    
+@posts.route("/browse_moderate")
+@login_required
+def browse_moderate():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(status='Draft').order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('browse_moderate.html', title='Browse, Support and track User Content Feedback', posts=posts)
     
