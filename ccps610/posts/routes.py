@@ -88,3 +88,12 @@ def support_post(post_id):
         #form.status.data = post.status
     return render_template('create_post.html', title='Update Post',
                            form=form, legend='Update Post')
+
+
+
+@posts.route("/browse_my_post")
+def browse_my_post():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('browse_my_post.html', title='Browse, Support and track User Content Feedback', posts=posts)
+    

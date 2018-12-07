@@ -1,19 +1,77 @@
 {% extends "layout.html" %}
 {% block content %}
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="container">
+  <h2>Current Registered Users</h2>
+  <p>Admins will have ability to delete</p>
+  <p>Moderators will only have ability to update and approve Posts</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pic</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>User Type:</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for user in users.items %}
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('users.user_posts', username=user.username) }}">{{ user.username }}</a>
-             
-            </div>  
-        <article class="media content-section2">
-            <h2>{{ user.email }}</h2>
-            <h2>{{ user.usertype }}</h2>
-            <p class="article-content">{{ user.content }}</p>
-          </div>
-        </article>
+      <tr>
+        <td><img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"></td>
+        <td><a class="mr-2" href="{{ url_for('users.user_posts', username=user.username) }}">{{ user.username }}</a></td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">User Type
+   </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">User</a></li>
+      <li><a href="#">Moderator</a></li>
+      <li><a href="#">Admin</a></li>
+    </ul>
+  </div>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+  <button type="button" class="btn btn-info">Update</button></td>
+      </tr>      
     {% endfor %}
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+    </script>
+</table>
+</div>
+    
     {% for page_num in users.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if users.page == page_num %}
@@ -23,6 +81,6 @@
         {% endif %}
       {% else %}
         ...
-      {% endif %}
+      {% endif %}      
     {% endfor %}
 {% endblock content %}
