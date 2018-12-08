@@ -58,6 +58,22 @@ Repository structure:
         └── config.py
         └── models.py
 ```
+## Dependencies:
+Explained how to download and install below
+
+```
+flask
+flask-sqlalchemy
+flask-mail
+flask-login
+flask-wtf
+flask-bcrypt
+flask-blueprint
+psycopg2
+pillow
+
+
+```
 
 ## Features:
 Workflow: (in Development)
