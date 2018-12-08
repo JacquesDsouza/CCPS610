@@ -16,8 +16,8 @@
         {% endif %}
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
-      <h2 class="article-title">{{ post.post_category }}</h2>
-      <h2 class="article-title">{{ post.post_type }}</h2>
+      <h6 class="article-title">Category: {{ post.post_category }}  Type: {{ post.post_type }}</h6>
+
       <p class="article-content">{{ post.content }}</p>                   
     </div>
   </article>

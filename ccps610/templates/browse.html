@@ -5,13 +5,20 @@
 <div class="container">
   <h2>Available Posts To review and provide feedback</h2>
   <table class="table">
+    <col width="10%">
+    <col width="10%">
+    <col width="30%">
+    <col width="10%">
+    <col width="10%">
+    <col width="20%">
+    <col width="10%">
     <thead>
       <tr>
         <th></th>
         <th>Username</th>
+        <th>Title</th>
         <th>Status</th>
         <th>Category</th>
-        <th>Title</th>
         <th>Date</th>
         <th>Support Count</th>
       </tr>
@@ -21,9 +28,9 @@
       <tr>
         <td><img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"></td>
         <td><a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a></td>
+        <td><a class="mr-2" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></td>
         <td><small class="text-muted">{{ post.status }}</small></td>
         <td><small class="text-muted">{{ post.post_type }}</small></td>
-        <td><small class="text-muted">{{ post.title }}</small></td>
         <td><small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small></td>
         <td><small class="text-muted">{{ post.support_count }}</small></td>
         </tr>      

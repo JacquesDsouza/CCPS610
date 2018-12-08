@@ -9,7 +9,9 @@ class Config:
     #MAIL_USE_TLS = True
     MAIL_PORT = 465
     MAIL_USE_SSL = True
-    SQLALCHEMY_DATABASE_URI =  os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI =  'postgres://amxdyopsspfkex:bdcc5c1d7cc43122be7e17a337a2177acf8396821db33cfddeee3e637118514e@ec2-23-21-65-173.compute-1.amazonaws.com:5432/dd3tlvdmo6j6qd'
+
+    #SQLALCHEMY_DATABASE_URI =  os.environ.get('DATABASE_URL')
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
 
