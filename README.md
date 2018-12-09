@@ -116,8 +116,19 @@ Spin up a virtual environment to test out the build.
 
 ```bash
 virtualenv venv
+```
+
+Activate the Virtual Environment
+```bash
 source venv/Scripts/activate
 ```
+
+To Deactivate the Virtual Environment
+```bash
+deactivate
+```
+
+
 
 ### Download the extensions
 Download the required extension using the requirements.txt file.
